@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Promocion;
+use App\Models\promocion;
 
 class PromocionController extends Controller
 {
@@ -12,7 +12,7 @@ class PromocionController extends Controller
      */
     public function index()
     {
-        $promociones = Promocion::all();
+        $promociones = promocion::all();
         $heads = [
             'nombre',
             'descripcion',
@@ -41,7 +41,7 @@ class PromocionController extends Controller
             'procentajeDescuento' => 'required',
         ]); //validacion de los campos osea que tienen que tener algun valor 
 
-        $promocion = Promocion::create([
+        $promocion = promocion::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
             'procentajeDescuento' => $request->procentajeDescuento,
@@ -56,7 +56,7 @@ class PromocionController extends Controller
      */
     public function show(string $id)
     {
-        $promocion = Promocion::findOrFail($id);
+        $promocion = promocion::findOrFail($id);
         return view('promocion.show',compact('promocion'));
     }
 
@@ -65,7 +65,7 @@ class PromocionController extends Controller
      */
     public function edit(string $id)
     {
-        $promocion = Promocion::findOrFail($id);
+        $promocion = promocion::findOrFail($id);
         return view('promocion.edit',compact('promocion'));
     }
 
@@ -79,7 +79,7 @@ class PromocionController extends Controller
             'descripcion' => 'required',
             'porcentaje_descuento' => 'required',
         ]); //validacion de los campos osea que tienen que tener algun valor 
-        $promocion = Promocion::findOrFail($id);
+        $promocion = promocion::findOrFail($id);
        
         $promocion->update($request->all());
         $this->saveToLog($request,'update',$promocion);
@@ -92,7 +92,7 @@ class PromocionController extends Controller
      */
     public function destroy(string $id, Request $request)
     {
-        $promocion = Promocion::find($id);
+        $promocion = promocion::find($id);
         $this->saveToLog($request,'destroy',$promocion);
         $promocion->delete();
         return redirect()->route('promocion.index', $promocion)->with('mensaje','registro eliminado correctamente');             

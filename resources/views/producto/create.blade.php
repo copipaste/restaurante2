@@ -7,48 +7,66 @@
 @stop
 
 @section('content')
-    <p></p>
-    <div class="card">
-        <div class="card-body">
-            {!! Form::open(['route'=>'producto.store']) !!}
-
-            <div class="form-group">
-                {!! Form::label('categoria_id','Categoria_Id')!!}
-                {!! Form::number('categoria_id',null, ['class'=>'form-control', 'placeholder'=> 'Categoria']) !!}
-            </div>
-
-            <div class="form-group">
-                {!! Form::label('nombre','Nombre')!!}
-                {!! Form::text('nombre',null, ['class'=>'form-control', 'placeholder'=> 'Producto']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('precio','Precio')!!}
-                {!! Form::number('precio',null, ['class'=>'form-control', 'placeholder'=> 'introduzaca su precio']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('imagen','imagen')!!}
-                {!! Form::file('imagen',null, ['class'=>'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('stock','Stock')!!}
-                {!! Form::number('stock',null, ['class'=>'form-control', 'placeholder'=> 'introduzaca stock']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('descripcion','descripcion')!!}
-                {!! Form::text('descripcion',null, ['class'=>'form-control', 'placeholder'=> 'introduzaca su Contraseña']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('disponibilida','Disponibilidad')!!}
-                {!! Form::text('disponibilida',null, ['class'=>'form-control', 'placeholder'=> '']) !!}
-            </div>
-        
-            <div class="form-group">
-                        <x-adminlte-button class="btn-flat" type="submit" label="Guardar" theme="success" icon="fas fa-save" />
-                        <a href="{{ route('producto.index') }}" class="btn btn-danger">Cancelar</a>
-                    </div>
-
+<form method="POST" action="{{ route('producto.store') }}"  method="POST" enctype="multipart/form-data">
+    @method('POST')
+    @csrf
+    <div class="row">
+        <div class="col-md-6">
+                <select name="categoria_id" class="form-control" >
+                    @if ($categorias)
+                        @foreach($categorias as $categoria)
+                            <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                        @endforeach
+                    @else
+                        <option value="" disabled>No hay categorías disponibles</option>
+                    @endif
+                </select>
             
-            {!! Form::close() !!}
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <x-adminlte-input name="nombre" label="Nombre" type="text" placeholder="" label-class="text-lightblue"
+                value="" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <x-adminlte-input name="precio" label="Precio" type="text" placeholder="" label-class="text-lightblue"
+                value="" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <input type="file" name="url" class="form control" id="url">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <x-adminlte-input name="stock" label="stock" type="text" placeholder="" label-class="text-lightblue"
+                value="" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <x-adminlte-input name="descripcion" label="Descripcion" type="text" placeholder=""
+                label-class="text-lightblue" value="" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <x-adminlte-input name="disponibilida" label="Disponibilida" type="text" placeholder=""
+                label-class="text-lightblue" value="" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <x-adminlte-button class="btn-flat" type="submit" label="Guardar" theme="success" />
+            <a href="{{ route('producto.index') }}" class="btn btn-danger">Cancelar</a>
+        </div>
+    </div>
+</form>
+  
 @stop

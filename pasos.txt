@@ -1,2 +1,3 @@
 correr este comando para que las imagenes se guarden bien
+FILESYSTEM_DISK=public
 php artisan storage:link

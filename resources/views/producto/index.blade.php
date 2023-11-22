@@ -27,13 +27,18 @@
                 @php
                     $i = 1;
                 @endphp
-
+    
                 @foreach ($producto as $producto)
                     <tr>
                         <td>{{ $producto->categoria_id }}</td>
                         <td>{{ $producto->nombre }}</td>
                         <td>{{ $producto->precio }}</td>
-                        <td>{{ $producto->imagen }}</td>
+                        <td>
+                            {{-- <img class="img-fluid img-thumbnail" src="{{Storage::url($producto->imagen)}}" width="100px"> --}}
+                            <img class="img-fluid img-thumbnail" src="{{ url('/storage/' . $producto->imagen) }}" width="100px">
+                            {{-- <img src="{{ asset($producto->url) }}" alt="" width="100px" --}}
+                            {{-- class="img-fluid img-thumbnail"> --}}
+                        </td>
                         <td>{{ $producto->stock }}</td>
                         <td>{{ $producto->descripcion }}</td>
                         <td>{{ $producto->disponibilida }}</td>

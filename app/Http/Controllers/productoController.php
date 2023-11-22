@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\producto;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\categoria;
+use Illuminate\Support\Facades\Storage;
+ 
 class productoController extends Controller
 {
     /**
@@ -32,7 +34,8 @@ class productoController extends Controller
      */
     public function create()
     {
-        return view('producto.create');
+        $categorias = categoria::all();
+        return view('producto.create', compact('categorias'));
     }
 
     /**
@@ -40,29 +43,42 @@ class productoController extends Controller
      */
     public function store(Request $request)
     {
+
+        
+        
         request()->validate([
             'categoria_id' => 'required',
             'nombre' => 'required',
             'precio' => 'required',
-            'imagen' => 'required',
             'stock' => 'required',
             'descripcion' => 'required',
             'disponibilida' => 'required'
         ]);
+          
+        $producto = new producto();
+        $producto->categoria_id = $request->categoria_id;
+        $producto->nombre = $request->nombre;
+        $producto->precio = $request->precio;
+        $producto->stock = $request->stock;
+        $producto->descripcion = $request->descripcion;
+        $producto->disponibilida = $request->disponibilida;
+        if( $request->hasFile('url')){
+            $producto->imagen = Storage::put('imagenes', $request->file('url'));
+        }
+        // if( $request->hasFile('url')){
+             
+            
+        //     $file = $request->file('url');
+        //     $destinationPath = 'images/';
+        //     $filename = time(). '-' .$file->getClientOriginalName();
+        //     $uploadSuccess = $request->file('url')->move($destinationPath, $filename);
+        //     $producto->imagen = $destinationPath . $filename;
+        // }
 
-        $producto = producto::create([
-            'categoria_id' => 1,
-            'nombre' => $request->nombre,
-            'precio' => $request->precio,
-            'imagen' => $request->imagen,
-            'stock' => $request->stock,
-            'descripcion' => $request->descripcion,
-            'disponibilida' => true
-            //$disponibilidad = $request->input('disponibilida') === 'si' ? 1 : 0
-        ]);
-
-        return redirect()->route('producto.index', $producto);
-        //return redirect()->route('producto.index', compact($producto))->with('success', 'producto creado correctamente');
+        $producto->save();
+    
+      return redirect()->route('producto.index', $producto);
+        
     }
 
     /**
