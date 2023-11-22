@@ -24,4 +24,5 @@ class categoria extends Model
     {
         return $this->hasMany(Producto::class);
     }
+    
 }

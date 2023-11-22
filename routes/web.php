@@ -33,9 +33,12 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('main');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('main');
+Route::get('/',[MenuController::class,'main'])->name('main');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

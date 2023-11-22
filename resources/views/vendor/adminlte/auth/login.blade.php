@@ -45,7 +45,7 @@
         {{-- Password field --}}
         <div class="input-group mb-3">
             <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                   placeholder="{{ __('adminlte::adminlte.password') }}">
+                   placeholder="contraseña">
 
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -67,7 +67,7 @@
                     <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                     <label for="remember">
-                        {{ __('adminlte::adminlte.remember_me') }}
+                        recuerdame
                     </label>
                 </div>
             </div>
@@ -88,7 +88,7 @@
     @if($password_reset_url)
         <p class="my-0">
             <a href="{{ $password_reset_url }}">
-                {{ __('adminlte::adminlte.i_forgot_my_password') }}
+               Olvide mi contraseña
             </a>
         </p>
     @endif
@@ -97,7 +97,7 @@
     @if($register_url)
         <p class="my-0">
             <a href="{{ $register_url }}">
-                {{ __('adminlte::adminlte.register_a_new_membership') }}
+                Registrarme
             </a>
         </p>
     @endif

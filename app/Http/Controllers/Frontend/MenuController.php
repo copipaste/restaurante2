@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use App\Models\Comment;
+use App\Models\Menu;
 
 class MenuController extends Controller
 {
@@ -16,10 +18,17 @@ class MenuController extends Controller
 
 
     function update(Request $request ,string $id){
-        
-        
-         dd($request ,$id);   
-     
+        //  dd($request ,$id);
+        //  aqui vienen los datos que se mandaran de el menu es decir si se selecciona algun producto    
+        return redirect()->route('menus.index');
+    }
+
+    function main()
+    {
+        $comments = Comment::latest()->take(3)->with('user')->get();
+        $menu = Menu::findOrfail(1);
+        $specials = $menu->productos;
+        return view('welcome', compact('comments', 'specials'));
     }
 
 }
