@@ -12,7 +12,15 @@ class Producto extends Model
     use HasFactory;
     protected $table = 'productos';
 
-
+    protected $fillable = [
+        'categoria_id',
+        'nombre',
+        'precio',
+        'imagen',
+        'stock',
+        'descripcion',
+        'disponibilida'
+    ];
     public function menu()
     {
         return $this->belongsToMany(Menu::class, 'menu_platos');
