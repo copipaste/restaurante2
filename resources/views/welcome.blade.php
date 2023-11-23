@@ -56,7 +56,7 @@
         </div>
       </section>
       <section class="py-20 bg-gray-50">
-        <div class="container items-center max-w-6xl px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
+        <div class="container items-center max-w-6xl px-4 py-10 mx-auto sm:px-20 md:px-32 lg:px-16">
           <div class="flex flex-wrap items-center -mx-3">
             <div class="order-1 w-full px-3 lg:w-1/2 lg:order-0">
               <div class="w-full lg:max-w-md">
@@ -112,25 +112,25 @@
           <div class="grid lg:grid-cols-4 gap-y-6">
             
           @if ($specials != null)
-          @foreach ($specials as $special)
-          <div class="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
-            <img class="w-full h-48" src={{Storage::url($special->imagen) }}
-              alt="Image" />
-            <div class="px-6 py-4">
-              <div class="flex mb-2">
-                <span class="px-4 py-0.5 text-sm bg-red-500 rounded-full text-red-50">{{$special->categoria->nombre}}</span>
-              </div>
-              <h4 class="mb-3 text-xl font-semibold tracking-tight text-green-600 uppercase">{{$special->nombre}}</h4>
-              <p class="leading-normal text-gray-700">{{$special->descripcion}}</p>
-            </div>
-            <div class="flex items-center justify-between p-4">
-              <button class="px-4 py-2 bg-green-600 text-green-50">Order Now</button>
-              <span class="text-xl text-green-600">{{$special->precio}}</span>
-            </div>
-          </div>
-          @endforeach
+                @foreach ($specials as $special)
+                <div class="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
+                  <img class="w-full h-48" src={{--Storage::url($special->imagen) --}}
+                    alt="Image" />
+                  <div class="px-6 py-4">
+                    <div class="flex mb-2">
+                      <span class="px-4 py-0.5 text-sm bg-red-500 rounded-full text-red-50">{{$special->categoria->nombre}}</span>
+                    </div>
+                    <h4 class="mb-3 text-xl font-semibold tracking-tight text-green-600 uppercase">{{$special->nombre}}</h4>
+                    <p class="leading-normal text-gray-700">{{$special->descripcion}}</p>
+                  </div>
+                  <div class="flex items-center justify-between p-4">
+                    <button class="px-4 py-2 bg-green-600 text-green-50">Order Now</button>
+                    <span class="text-xl text-green-600">{{$special->precio}}</span>
+                  </div>
+                </div>
+                @endforeach
           @endif
-
+|
 
              
 
