@@ -10,7 +10,8 @@
             @foreach ($Products as  $product)
             <div class="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
                 
-                <img class="w-full h-48" src= "{{Storage::url($product->imagen) }}" alt="Image" />
+                {{-- <img class="w-full h-48" src= "{{Storage::url($product->imagen) }}" alt="Image" /> --}}
+                <img class="w-full h-48" src="{{ url('/storage/' . $product->imagen) }}" alt="Image">
                 {{-- <img class="w-full h-48" src= "{{asset($category->url)}}" alt="Image" /> --}}
                 <div class="px-6 py-4">
                    

@@ -14,6 +14,9 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::latest()->with('user')->paginate(10);
+        if($comments->count() == 0){
+            $comments = null;
+        }
         return view('comment.index', compact('comments'));
     }
 

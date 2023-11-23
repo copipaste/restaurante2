@@ -25,9 +25,17 @@ class MenuController extends Controller
 
     function main()
     {
-        $comments = Comment::latest()->take(3)->with('user')->get();
+        $comments = Comment::latest()->take(3)->with('user')->get(); 
         $menu = Menu::findOrfail(1);
         $specials = $menu->productos;
+
+        if($comments->count() == 0){
+        $comments = null;
+        }
+        if($specials->count() == 0){
+        $specials = null;
+        }
+
         return view('welcome', compact('comments', 'specials'));
     }
 

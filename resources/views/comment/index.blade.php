@@ -26,6 +26,7 @@
 
           </form>
           {{-- termina formulario para comentar --}}
+          @if ($comments != null)
           @foreach ($comments as $comment)
           <article class="p-6 text-base bg-gray-100 rounded-lg  ">
             <footer class="flex justify-between items-center mb-2">
@@ -87,10 +88,9 @@
             </div>
         </article>    
 
-
           @endforeach
           {{ $comments->links() }}
-
+          @endif
  
         </div>
       </section>
