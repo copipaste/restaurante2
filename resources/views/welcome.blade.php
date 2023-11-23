@@ -148,21 +148,21 @@
 
           
           @if ($comments != null)
-          @foreach ($comments as $comment)
-          <div class="max-w-md p-4 bg-white rounded-lg shadow-lg">
-            <div class="flex justify-center -mt-16 md:justify-end">
-              <img class="object-cover w-20 h-20 border-2 border-green-500 rounded-full"
-                src="https://cdn.pixabay.com/photo/2018/01/18/17/48/purchase-3090818__340.jpg">
-            </div>
-            <div>
-              <h2 class="text-3xl font-semibold text-gray-800">Food</h2>
-              <p class="mt-2 text-gray-600">{{$comment->body}} </p>
-            </div>
-            <div class="flex justify-end mt-4">
-              <a href="#" class="text-xl font-medium text-green-500">{{$comment->user->nombre}}</a>
-            </div>
-          </div>
-          @endforeach
+                  @foreach ($comments as $comment)
+                  <div class="max-w-md p-4 bg-white rounded-lg shadow-lg">
+                    <div class="flex justify-center -mt-16 md:justify-end">
+                      <img class="object-cover w-20 h-20 border-2 border-green-500 rounded-full"
+                        src="https://cdn.pixabay.com/photo/2018/01/18/17/48/purchase-3090818__340.jpg">
+                    </div>
+                    <div>
+                      <h2 class="text-3xl font-semibold text-gray-800">Food</h2>
+                      <p class="mt-2 text-gray-600">{{$comment->body}} </p>
+                    </div>
+                    <div class="flex justify-end mt-4">
+                      <a href="#" class="text-xl font-medium text-green-500">{{$comment->user->nombre}}</a>
+                    </div>
+                  </div>
+                  @endforeach
           @endif
 
 
